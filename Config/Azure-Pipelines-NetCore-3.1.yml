@@ -1,0 +1,57 @@
+trigger:
+#- main
+- master
+
+pool:
+#  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-20.04'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+    - task: UseDotNet@2 
+      displayName: "Restore Back"
+      inputs:
+        version: '3.1.x'
+        packageType: sdk
+    - script: dotnet restore PROJECTNAMEBACK.csproj
+      displayName: 'dotnet Restore back'
+
+    - task: UseDotNet@2 
+      displayName: "Restore Front"
+      inputs:
+        version: '3.1.x'
+        packageType: sdk
+    - script: dotnet restore PROJECTNAMEFRONT.csproj
+      displayName: 'dotnet Restore FRONT'
+
+    - task: UseDotNet@2
+      displayName: "Build Back"
+      inputs:
+        version: '3.1.x'
+        packageType: sdk
+    - script: dotnet build --configuration $(buildConfiguration) PROJECTNAMEBACK.csproj
+      displayName: 'dotnet build $(buildConfiguration) PROJECTNAMEBACK.csproj'
+
+    - task: UseDotNet@2 
+      displayName: "Build Front"
+      inputs:
+        version: '3.1.x'
+        packageType: sdk
+    - script: dotnet build --configuration $(buildConfiguration) PROJECTNAMEFRONT.csproj
+      displayName: 'dotnet build $(buildConfiguration) PROJECTNAMEFRONT.csproj'
+
+    - task: DotNetCoreCLI@2
+      displayName: "Publish Artifacts"
+      inputs:
+        command: 'publish'
+        publishWebProjects: true
+        arguments: '-r linux-x64 --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+        zipAfterPublish: true
+
+    - task: PublishBuildArtifacts@1
+      displayName: "ArtefactName"
+      inputs:
+        pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+        artifactName: 'ArtefactName'
