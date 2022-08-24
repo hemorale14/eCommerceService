@@ -42,12 +42,12 @@ namespace ECommerceServices.Api.ShoppingCart.Application
                 };
                 _context.SessionHeader.Add(header);
                 var result = await _context.SaveChangesAsync();
-                if (result == 0) 
-                { 
+                if (result == 0)
+                {
                     throw new Exception("Session header is not inserted");
                 }
                 int headerId = header.SessionHeaderId;
-                foreach (var item in request.Product) 
+                foreach (var item in request.Product)
                 {
                     var detail = new Model.SessionDetail
                     {

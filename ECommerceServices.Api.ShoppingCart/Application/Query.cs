@@ -22,7 +22,8 @@ namespace ECommerceServices.Api.ShoppingCart.Application
             public readonly SessionContext _context;
             public readonly IBookService _bookService;
 
-            public ManageHandler(SessionContext context, IBookService bookService) {
+            public ManageHandler(SessionContext context, IBookService bookService)
+            {
                 _context = context;
                 _bookService = bookService;
             }
@@ -31,11 +32,14 @@ namespace ECommerceServices.Api.ShoppingCart.Application
                 var sessionHeader = await _context.SessionHeader.FirstOrDefaultAsync(s => s.SessionHeaderId == request.HeaderId);
                 var sessionDetail = await _context.SessionDetail.Where(s => s.SessionHeaderId == request.HeaderId).ToListAsync();
                 var dtos = new List<ShoppingCartDetailDto>();
-                foreach(var book in sessionDetail){
+                foreach (var book in sessionDetail)
+                {
                     var response = await _bookService.GetBook(new Guid(book.ProductSelected));
-                    if (response.result) {
+                    if (response.result)
+                    {
                         var objBook = response.Book;
-                        var ShoppingCartDetailDto = new ShoppingCartDetailDto {
+                        var ShoppingCartDetailDto = new ShoppingCartDetailDto
+                        {
                             Title = objBook.Title,
                             PublishDate = objBook.PublishDate,
                             BookId = objBook.BookId

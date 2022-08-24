@@ -1,8 +1,6 @@
 ﻿using ECommerceServices.Api.Author.Persistence;
 using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,7 +8,7 @@ namespace ECommerceServices.Api.Author.Application
 {
     public class New
     {
-        public class Execute : IRequest 
+        public class Execute : IRequest
         {
             public string Name { get; set; }
             public string LastName { get; set; }
@@ -21,14 +19,14 @@ namespace ECommerceServices.Api.Author.Application
         {
             public readonly AuthorContext _context;
 
-            public ManageHandler(AuthorContext context) 
+            public ManageHandler(AuthorContext context)
             {
                 _context = context;
             }
             public async Task<Unit> Handle(Execute request, CancellationToken cancellationToken)
             {
-                var author = new Model.Author 
-                { 
+                var author = new Model.Author
+                {
                     Name = request.Name,
                     LastName = request.LastName,
                     BornDate = request.BornDate,

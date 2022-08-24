@@ -34,7 +34,7 @@ namespace ECommerceServices.Api.Book.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<BookDto>> GetBook(Guid id)
         {
-            return await _mediator.Send(new QueryFilter.BookUnic { BookId = id});
+            return await _mediator.Send(new QueryFilter.BookUnic { BookId = id });
         }
     }
 }

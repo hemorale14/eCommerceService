@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Query.Internal;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,7 +10,8 @@ namespace eCommerceService.Api.Book.Test
     {
         private readonly IQueryProvider _inner;
 
-        public AsyncQueryProvider(IQueryProvider inner) {
+        public AsyncQueryProvider(IQueryProvider inner)
+        {
             _inner = inner;
         }
         public IQueryable CreateQuery(Expression expression)
@@ -40,12 +38,12 @@ namespace eCommerceService.Api.Book.Test
         {
             var resultType = typeof(TResult).GetGenericArguments()[0];
             var resultExecution = typeof(IQueryProvider).GetMethod(
-                name : nameof(IQueryProvider.Execute), 
-                genericParameterCount:1, 
-                types : new[] { typeof(Expression)}
+                name: nameof(IQueryProvider.Execute),
+                genericParameterCount: 1,
+                types: new[] { typeof(Expression) }
                 )
                 .MakeGenericMethod(resultType)
-                .Invoke(this, new[] { expression});
+                .Invoke(this, new[] { expression });
             return (TResult)typeof(Task).GetMethod(nameof(Task.FromResult))?
                 .MakeGenericMethod(resultType).Invoke(null, new[] { resultExecution });
         }

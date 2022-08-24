@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,8 +26,9 @@ namespace ECommerceServices.Api.Author.Application
 
             public async Task<Model.Author> Handle(AuthorUnic request, CancellationToken cancellationToken)
             {
-                var author =  await _context.Author.Where(a => a.AuthorGuid.Equals(request.AuthorGuid)).FirstOrDefaultAsync();
-                if (author == null) {
+                var author = await _context.Author.Where(a => a.AuthorGuid.Equals(request.AuthorGuid)).FirstOrDefaultAsync();
+                if (author == null)
+                {
                     throw new Exception("Author is not exist.");
                 }
                 return author;

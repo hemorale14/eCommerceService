@@ -1,10 +1,6 @@
 ﻿using ECommerceServices.Api.ShoppingCart.Application;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ECommerceServices.Api.ShoppingCart.Controllers
@@ -28,7 +24,7 @@ namespace ECommerceServices.Api.ShoppingCart.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ShoppingCartDto>> GetShoppingCart(int id)
         {
-            return await _mediator.Send(new Query.Execute {HeaderId = id });
+            return await _mediator.Send(new Query.Execute { HeaderId = id });
         }
     }
 }

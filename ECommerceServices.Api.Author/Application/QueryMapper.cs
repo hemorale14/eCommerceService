@@ -2,9 +2,7 @@
 using ECommerceServices.Api.Author.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,7 +10,8 @@ namespace ECommerceServices.Api.Author.Application
 {
     public class QueryMapper
     {
-        public class AuthorList : IRequest<List<AuthorDto>> { 
+        public class AuthorList : IRequest<List<AuthorDto>>
+        {
         }
 
         public class ManageHandler : IRequestHandler<AuthorList, List<AuthorDto>>

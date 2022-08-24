@@ -1,10 +1,7 @@
 ﻿using ECommerceServices.Api.Author.Application;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ECommerceServices.Api.Author.Controllers

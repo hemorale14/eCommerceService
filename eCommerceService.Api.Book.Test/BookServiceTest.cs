@@ -7,14 +7,13 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace eCommerceService.Api.Book.Test
 {
     public class BookServiceTest
     {
-        private IEnumerable<ECommerceServices.Api.Book.Model.Book> GetDataTest() 
+        private IEnumerable<ECommerceServices.Api.Book.Model.Book> GetDataTest()
         {
             A.Configure<ECommerceServices.Api.Book.Model.Book>()
                  .Fill(b => b.Title).AsArticleTitle()
@@ -24,7 +23,7 @@ namespace eCommerceService.Api.Book.Test
             return list;
         }
 
-        private Mock<BookContext> GetContext() 
+        private Mock<BookContext> GetContext()
         {
             var dataTest = GetDataTest().AsQueryable();
             var dbSet = new Mock<DbSet<ECommerceServices.Api.Book.Model.Book>>();
@@ -45,7 +44,8 @@ namespace eCommerceService.Api.Book.Test
             return context;
         }
         [Fact]
-        public async void GetBookById() {
+        public async void GetBookById()
+        {
 
             var mockContext = GetContext();
             var mapConfig = new MapperConfiguration(cfg => cfg.AddProfile(new MappingTest()));
@@ -61,7 +61,7 @@ namespace eCommerceService.Api.Book.Test
         }
 
         [Fact]
-        public async void GetBooks() 
+        public async void GetBooks()
         {
             //Test continuous integration 
             //System.Diagnostics.Debugger.Launch();
@@ -78,7 +78,8 @@ namespace eCommerceService.Api.Book.Test
         }
 
         [Fact]
-        public async void SaveBook() {
+        public async void SaveBook()
+        {
 
             ///System.Diagnostics.Debugger.Launch();
 

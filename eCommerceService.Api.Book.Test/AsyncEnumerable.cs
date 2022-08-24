@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading;
 
 namespace eCommerceService.Api.Book.Test
@@ -15,8 +13,8 @@ namespace eCommerceService.Api.Book.Test
         {
             return new AsyncEnumerator<T>(this.AsEnumerable().GetEnumerator());
         }
-        IQueryProvider IQueryable.Provider 
-        { 
+        IQueryProvider IQueryable.Provider
+        {
             get { return new AsyncQueryProvider<T>(this); }
         }
     }

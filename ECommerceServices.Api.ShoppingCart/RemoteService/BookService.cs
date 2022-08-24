@@ -2,8 +2,6 @@
 using ECommerceServices.Api.ShoppingCart.RemoteModel;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -15,7 +13,8 @@ namespace ECommerceServices.Api.ShoppingCart.RemoteService
         private readonly IHttpClientFactory _httpClient;
         private readonly ILogger<BookService> _logger;
 
-        public BookService(IHttpClientFactory httpClient, ILogger<BookService> logger) {
+        public BookService(IHttpClientFactory httpClient, ILogger<BookService> logger)
+        {
             _httpClient = httpClient;
             _logger = logger;
         }
@@ -26,7 +25,8 @@ namespace ECommerceServices.Api.ShoppingCart.RemoteService
             {
                 var client = _httpClient.CreateClient("Books");
                 var response = await client.GetAsync($"api/Book/{BookId}");
-                if (response.IsSuccessStatusCode) {
+                if (response.IsSuccessStatusCode)
+                {
                     var content = await response.Content.ReadAsStringAsync();
                     var option = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
                     var objBook = JsonSerializer.Deserialize<RemoteBook>(content, option);
@@ -34,7 +34,7 @@ namespace ECommerceServices.Api.ShoppingCart.RemoteService
                 }
                 return (false, null, response.ReasonPhrase);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
                 return (false, null, ex.Message);

@@ -2,8 +2,6 @@
 using FluentValidation;
 using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,16 +9,16 @@ namespace ECommerceServices.Api.Author.Application
 {
     public class NewFluent
     {
-        public class Execute : IRequest 
+        public class Execute : IRequest
         {
             public string Name { get; set; }
             public string LastName { get; set; }
             public DateTime? BornDate { get; set; }
         }
 
-        public class ExecuteValidation : AbstractValidator<Execute> 
+        public class ExecuteValidation : AbstractValidator<Execute>
         {
-            public ExecuteValidation() 
+            public ExecuteValidation()
             {
                 RuleFor(v => v.Name).NotEmpty();
                 RuleFor(v => v.LastName).NotEmpty();
@@ -31,14 +29,14 @@ namespace ECommerceServices.Api.Author.Application
         {
             public readonly AuthorContext _context;
 
-            public ManageHandler(AuthorContext context) 
+            public ManageHandler(AuthorContext context)
             {
                 _context = context;
             }
             public async Task<Unit> Handle(Execute request, CancellationToken cancellationToken)
             {
-                var author = new Model.Author 
-                { 
+                var author = new Model.Author
+                {
                     Name = request.Name,
                     LastName = request.LastName,
                     BornDate = request.BornDate,

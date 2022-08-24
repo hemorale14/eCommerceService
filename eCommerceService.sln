@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceServices.Api.Book"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceServices.Api.ShoppingCart", "ECommerceServices.Api.ShoppingCart\ECommerceServices.Api.ShoppingCart.csproj", "{FDE9099F-0BD2-4402-9EF2-9135C6AEDC40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerceService.Api.Book.Test", "eCommerceService.Api.Book.Test\eCommerceService.Api.Book.Test.csproj", "{2C2B53A9-B6E8-45FC-BA00-9C44EAC9B8DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceService.Api.Book.Test", "eCommerceService.Api.Book.Test\ECommerceService.Api.Book.Test.csproj", "{2C2B53A9-B6E8-45FC-BA00-9C44EAC9B8DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
